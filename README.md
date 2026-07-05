@@ -1,20 +1,32 @@
 # ChatGPT
 
-ChatGPT is an open-source **agentic AI chatbot** built with **Python, FastAPI, LangGraph, LangChain, Google Gemini, Tavily, ChromaDB, and SQLite**.
+ChatGPT is an open-source **Agentic AI Chatbot** built with **Python, FastAPI, LangGraph, LangChain, Google Gemini, Tavily, ChromaDB, and SQLite**.
 
-It supports real-time streaming chat, document uploads, retrieval-augmented generation (RAG), web search, conversation memory, and a simple web UI.
+It supports real-time streaming chat, document uploads, Retrieval-Augmented Generation (RAG), web search, conversation memory, and a simple web interface.
+
+---
+
+## 🚀 Live Demo
+
+**Try the application here:**
+
+https://chatgpt-agent-f9v4.onrender.com
+
+> **Note:** The application is hosted on Render's free tier. If the app has been inactive, the first request may take 30–60 seconds while the server wakes up.
 
 ---
 
 ## Features
 
-* Chat with an AI agent powered by Google Gemini
-* Stream responses in real time
-* Upload documents such as PDF, DOCX, TXT, MD, PY, and CSV
-* Use uploaded files as context through RAG
-* Search the web with Tavily for current information
-* Store and recall conversation history
-* Simple FastAPI-based web interface
+- Chat with an AI agent powered by Google Gemini
+- Stream responses in real time
+- Upload PDF, DOCX, TXT, MD, PY, and CSV documents
+- Retrieval-Augmented Generation (RAG) using uploaded documents
+- Search the web using Tavily
+- Store and recall conversation history
+- Long-term memory support
+- Multi-turn conversations with LangGraph
+- Simple FastAPI web interface
 
 ---
 
@@ -22,33 +34,41 @@ It supports real-time streaming chat, document uploads, retrieval-augmented gene
 
 This project combines:
 
-* **FastAPI** for the backend server and API endpoints
-* **Jinja2** for rendering the frontend UI
-* **LangGraph** for agent orchestration
-* **LangChain** for tools, messages, and RAG workflow
-* **Google Gemini** as the LLM provider
-* **Tavily** for web search
-* **ChromaDB** for vector search over uploaded documents
-* **SQLite** for conversation and persistence
+- **FastAPI** for backend APIs
+- **Jinja2** for rendering the frontend
+- **LangGraph** for agent orchestration
+- **LangChain** for tools and RAG
+- **Google Gemini** as the LLM
+- **Tavily** for web search
+- **ChromaDB** for vector storage
+- **SQLite** for chat history, long-term memory, and checkpoints
+
+---
+
+## Tech Stack
+
+- Python
+- FastAPI
+- LangGraph
+- LangChain
+- Google Gemini
+- Tavily Search
+- ChromaDB
+- SQLite
+- SQLAlchemy
+- Jinja2
+
 ---
 
 ## Prerequisites
 
 Make sure you have the following installed:
 
-* Python 3.11
-* pip or conda
-* Git
-* Google API key for Gemini
-* Tavily API key for web search
-
-Optional for deployment:
-
-* Docker
-* AWS account
-* Amazon ECR repository
-* EC2 instance
-* GitHub Actions self-hosted runner
+- Python 3.11+
+- pip or conda
+- Git
+- Google Gemini API Key
+- Tavily API Key
 
 ---
 
@@ -56,21 +76,41 @@ Optional for deployment:
 
 ### 1. Clone the repository
 
+```bash
+git clone <your-repository-url>
+```
 
-### 2. Navigate to the project directory
+### 2. Navigate to the project
+
+```bash
+cd ChatGPT
+```
 
 ### 3. Create a virtual environment
 
+Using conda:
 
-### 4. Activate the virtual environment
+```bash
+conda create -n chatgpt python=3.11 -y
+```
 
+### 4. Activate the environment
+
+```bash
+conda activate chatgpt
+```
 
 ### 5. Install dependencies
 
+```bash
+pip install -r requirements.txt
+```
+
+---
 
 ## Environment Variables
 
-Create a `.env` file in the project root directory.
+Create a `.env` file in the project root.
 
 ```env
 GOOGLE_API_KEY=your_google_api_key
@@ -84,25 +124,17 @@ LANGSMITH_API_KEY=your_langsmith_api_key
 LANGSMITH_PROJECT=chatgpt
 ```
 
-If you do not want to use LangSmith tracing, keep:
-
-```env
-LANGSMITH_TRACING=false
-```
-
 ---
 
 ## Run Locally
-
-Start the FastAPI app:
 
 ```bash
 python app.py
 ```
 
-The app will be available at:
+Open:
 
-```text
+```
 http://127.0.0.1:8080
 ```
 
@@ -110,19 +142,22 @@ http://127.0.0.1:8080
 
 ## Project Structure
 
-
-├── app.py                  # FastAPI app and streaming chat endpoints
-├── agent.py                # LangGraph agent setup and tool orchestration
-├── database.py             # Conversation and persistence logic
-├── rag.py                  # Document ingestion and RAG logic
-├── tools.py                # Agent tools such as web search, memory, and RAG
-├── requirements.txt        # Python dependencies
-├── templates/
-│   └── index.html          # Frontend UI
+```text
+ChatGPT/
 │
-├── uploads/                # Uploaded documents
-├── data/                   # SQLite database and app data
-└── chroma_db/              # ChromaDB vector database storage
+├── app.py                  # FastAPI app and streaming endpoints
+├── agent.py                # LangGraph agent
+├── database.py             # SQLite + SQLAlchemy logic
+├── rag.py                  # RAG pipeline
+├── tools.py                # Agent tools
+├── requirements.txt
+│
+├── templates/
+│   └── index.html
+│
+├── uploads/                # Uploaded files
+├── data/                   # SQLite databases
+└── chroma_db/              # Chroma vector database
 ```
 
 ---
@@ -149,11 +184,10 @@ Calculate 125 * 48 / 6.
 
 ## Notes
 
-* Do not commit your `.env` file to GitHub.
-* Keep API keys inside GitHub Secrets for deployment.
-* For production, avoid using `reload=True` in Uvicorn.
-* Make sure port `8080` is open in your EC2 security group.
-* Rotate any API keys that were accidentally exposed publicly.
+- Do not commit your `.env` file.
+- Keep your API keys private.
+- For production, disable `reload=True`.
+- Runtime-generated files inside `uploads/`, `data/`, and `chroma_db/` should use persistent storage when deploying to production.
 
 ---
 
@@ -161,15 +195,13 @@ Calculate 125 * 48 / 6.
 
 Contributions are welcome.
 
-To contribute:
-
 1. Fork the repository.
-2. Create a new branch.
-3. Make your changes.
-4. Submit a pull request.
+2. Create a feature branch.
+3. Commit your changes.
+4. Open a Pull Request.
 
 ---
 
 ## License
 
-This project is open source. Please check the repository license for usage terms.
+This project is open source. Please refer to the repository license for usage details.
