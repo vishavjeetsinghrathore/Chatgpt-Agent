@@ -1,6 +1,6 @@
-# BappyGPT
+# ChatGPT
 
-BappyGPT is an open-source **agentic AI chatbot** built with **Python, FastAPI, LangGraph, LangChain, Google Gemini, Tavily, ChromaDB, and SQLite**.
+ChatGPT is an open-source **agentic AI chatbot** built with **Python, FastAPI, LangGraph, LangChain, Google Gemini, Tavily, ChromaDB, and SQLite**.
 
 It supports real-time streaming chat, document uploads, retrieval-augmented generation (RAG), web search, conversation memory, and a simple web UI.
 
@@ -81,7 +81,7 @@ TAVILY_API_KEY=your_tavily_api_key
 LANGSMITH_TRACING=false
 LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 LANGSMITH_API_KEY=your_langsmith_api_key
-LANGSMITH_PROJECT=bappygpt
+LANGSMITH_PROJECT=chatgpt
 ```
 
 If you do not want to use LangSmith tracing, keep:
@@ -117,9 +117,6 @@ http://127.0.0.1:8080
 ├── rag.py                  # Document ingestion and RAG logic
 ├── tools.py                # Agent tools such as web search, memory, and RAG
 ├── requirements.txt        # Python dependencies
-├── Dockerfile              # Docker image configuration
-├── .dockerignore           # Docker ignore rules
-│
 ├── templates/
 │   └── index.html          # Frontend UI
 │
